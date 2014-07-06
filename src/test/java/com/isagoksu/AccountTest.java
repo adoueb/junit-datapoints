@@ -28,10 +28,16 @@ public class AccountTest {
     public void testWithdraw(Account account) {
         assumeThat(account.getBalance(), Matchers.greaterThan(BigDecimal.TEN));
         assertTrue(account.withdraw(BigDecimal.TEN));
-    }
+    } 
 
     @Theory
     public void testTransferringMoney(Account johnDoe, Account janeDoe) {
+        assumeThat(johnDoe.getBalance(), Matchers.greaterThan(new BigDecimal("25")));
+        assertTrue(johnDoe.transfer(new BigDecimal("25"), janeDoe));
+    }
+
+    @Theory
+    public void testTransferringMoney2(Account johnDoe, Account janeDoe) {
         assumeThat(johnDoe.getBalance(), Matchers.greaterThan(new BigDecimal("25")));
         assertTrue(johnDoe.transfer(new BigDecimal("25"), janeDoe));
     }
